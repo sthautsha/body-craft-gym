@@ -1,0 +1,18 @@
+{% extends 'base/home.html' %}
+
+{% block content %}
+<h1>{{current_time}}</h1>
+    <div >
+        {% for attendance in attendance_list %}
+            <h5>{{attendance.user_id.username}}</h5>
+            {% if attendance.check_in == False%}
+                <h5>{{attendance.check_in}} -- Check out</h5>
+            {% else %}
+                <h5>{{attendance.check_in}} -- Check in</h5>
+            {% endif %}
+            <h5>{{attendance.check_in_date}}</h5>
+        {% endfor %}
+    </div>   
+
+
+{% endblock content %}

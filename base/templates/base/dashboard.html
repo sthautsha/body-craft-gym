@@ -1,0 +1,212 @@
+{% extends 'base/home.html' %}
+
+
+
+
+
+{% block modal %}
+{% for bill in bill_list %}
+{% if bill.remainingDays < 10 %} <div class="modalBody">
+    <div class="modal flex  justify-content-center align-items-center">
+        <div class="modalContainer">
+            <div class="flex flexColumn justify-content-center align-items-center">
+
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                    role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                    <g fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path stroke-linecap="round" d="M12 7v6m0 3.5v.5" />
+                    </g>
+                </svg>
+
+                <p>Dear Customer, your membership plan is about to expire.
+
+                    </br>Please renew it as soon as possible</p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    {% endif %}
+    {%endfor%}
+    {% endblock %}
+    {% block content%}
+
+
+    <div class="dashboard">
+        <h2>Dashboard</h2>
+        <div class="breadCrumbs flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                <path fill="currentColor"
+                    d="M5 22h14a2 2 0 0 0 2-2v-9a1 1 0 0 0-.29-.71l-8-8a1 1 0 0 0-1.41 0l-8 8A1 1 0 0 0 3 11v9a2 2 0 0 0 2 2zm5-2v-5h4v5zm-5-8.59l7-7l7 7V20h-3v-5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v5H5z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024">
+                <path fill="currentColor"
+                    d="M340.864 149.312a30.592 30.592 0 0 0 0 42.752L652.736 512L340.864 831.872a30.592 30.592 0 0 0 0 42.752a29.12 29.12 0 0 0 41.728 0L714.24 534.336a32 32 0 0 0 0-44.672L382.592 149.376a29.12 29.12 0 0 0-41.728 0z" />
+            </svg>
+            <a href="">Dashboard</a>
+        </div>
+
+        <div class="mainInformation-header">
+            <div class="card flex flexColumn align-items-center justify-content-center">
+                <div class="icon remaining">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
+                        viewBox="0 0 24 24">
+                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2">
+                            <rect width="20" height="18" x="2" y="4" rx="4" />
+                            <path d="M8 2v4m8-4v4M2 10h20" />
+                        </g>
+                    </svg>
+                </div>
+
+                {% for bill in bill_list %}
+                <h5>{{bill.remainingDays}} days</h5>
+                {% endfor %}
+                <h6>Remaining Days</h6>
+            </div>
+            <div class="card flex flexColumn align-items-center justify-content-center">
+                <div class="icon user">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
+                        viewBox="0 0 1024 1024">
+                        <path fill="currentColor"
+                            d="M858.5 763.6a374 374 0 0 0-80.6-119.5a375.63 375.63 0 0 0-119.5-80.6c-.4-.2-.8-.3-1.2-.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1c-.4.2-.8.3-1.2.5c-44.8 18.9-85 46-119.5 80.6a375.63 375.63 0 0 0-80.6 119.5A371.7 371.7 0 0 0 136 901.8a8 8 0 0 0 8 8.2h60c4.4 0 7.9-3.5 8-7.8c2-77.2 33-149.5 87.8-204.3c56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c.1 4.4 3.6 7.8 8 7.8h60a8 8 0 0 0 8-8.2c-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z" />
+                    </svg>
+                </div>
+                <h5>60</h5>
+                <h6>Total Users</h6>
+            </div>
+            <div class="card flex flexColumn align-items-center justify-content-center">
+                <div class="icon package">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
+                        viewBox="0 0 16 16">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="1.5" d="M1.75 5.75v8.5h12.5v-8.5l-3.5-4h-5.5zm6.25-4v3.5m-5.75.5h11.5" />
+                    </svg>
+                </div>
+                <h5>Premium</h5>
+                <h6>Current Package Name</h6>
+            </div>
+            <div class="card flex flexColumn align-items-center justify-content-center">
+                <div class="icon joined">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
+                        viewBox="0 0 24 24">
+                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2">
+                            <rect width="20" height="18" x="2" y="4" rx="4" />
+                            <path d="M8 2v4m8-4v4M2 10h20" />
+                        </g>
+                    </svg>
+                </div>
+                <h5>2021/01/12</h5>
+                <h6>Joined Date</h6>
+            </div>
+        </div>
+        {% if attendance == 1%}
+        <div class="mainInformation-body">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Attendance</h5>
+                </div>
+                <div class="card-body flex justify-content-center">
+                    <a class="checkin" href="{% url 'check_in' %}">
+                        <h3>Check in</h3>
+                    </a>
+                </div>
+                <div class="card-footer flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
+                        viewBox="0 0 24 24">
+                        <g fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path stroke-linecap="round"
+                                d="M10 8.484C10.5 7.494 11 7 12 7c1.246 0 2 .989 2 1.978s-.5 1.483-2 2.473V13m0 3.5v.5" />
+                        </g>
+                    </svg>
+                    <p>Check in to take your attendance</p>
+                </div>
+            </div>
+        </div>
+        {% elif attendance == 2 %}
+        <div class="mainInformation-body">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Attendance</h5>
+                </div>
+                <div class="card-body flex justify-content-center">
+                    <a class="checkout" href="{% url 'check_out' %}">
+                        <h3>Check out</h3>
+                    </a>
+                </div>
+                <div class="card-footer flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
+                        viewBox="0 0 24 24">
+                        <g fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path stroke-linecap="round"
+                                d="M10 8.484C10.5 7.494 11 7 12 7c1.246 0 2 .989 2 1.978s-.5 1.483-2 2.473V13m0 3.5v.5" />
+                        </g>
+                    </svg>
+                    <p>Check in to take your attendance</p>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="mainInformation-body">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Attendance</h5>
+                </div>
+                <div class="card-body flex justify-content-center">
+                    <a class="disable">
+                        <h3>Disable</h3>
+                    </a>
+                </div>
+                <div class="card-footer flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
+                        viewBox="0 0 24 24">
+                        <g fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path stroke-linecap="round"
+                                d="M10 8.484C10.5 7.494 11 7 12 7c1.246 0 2 .989 2 1.978s-.5 1.483-2 2.473V13m0 3.5v.5" />
+                        </g>
+                    </svg>
+                    <p>Check in to take your attendance</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+
+    {% block extra_js %}
+
+    <script>
+
+        setTimeout(() => {
+            add()
+        }, 500);
+        function add() {
+            modal = document.querySelector(".modal").classList.add("active");
+        }
+        setTimeout(() => {
+            remove()
+        }, 4000);
+
+        function remove() {
+            document.querySelector(".modal").classList.remove("active")
+        }
+
+        toaster();
+    </script>
+    {% endblock extra_js %}
+
+    {% endblock %}

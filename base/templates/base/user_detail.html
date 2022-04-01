@@ -1,0 +1,219 @@
+{% extends 'base/home.html' %}
+
+{% block content %}
+<h2>Register new user</h2>
+<div class="breadCrumbs flex align-items-center">
+    <a href="{% url 'dashboard'  %}">
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+            width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M5 22h14a2 2 0 0 0 2-2v-9a1 1 0 0 0-.29-.71l-8-8a1 1 0 0 0-1.41 0l-8 8A1 1 0 0 0 3 11v9a2 2 0 0 0 2 2zm5-2v-5h4v5zm-5-8.59l7-7l7 7V20h-3v-5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v5H5z" />
+        </svg>
+    </a>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+        width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024">
+        <path fill="currentColor"
+            d="M340.864 149.312a30.592 30.592 0 0 0 0 42.752L652.736 512L340.864 831.872a30.592 30.592 0 0 0 0 42.752a29.12 29.12 0 0 0 41.728 0L714.24 534.336a32 32 0 0 0 0-44.672L382.592 149.376a29.12 29.12 0 0 0-41.728 0z" />
+    </svg>
+    <a href="">Register new user</a>
+</div>
+<div class="table card" style="padding:20px">
+
+    <div class="flex align-items-center justify-content-between tableheader">
+        <a href="{% url 'register' %}">
+            <div>
+                Create New User
+            </div>
+        </a>
+        <div class="searchContainer">
+            <input type="text" placeholder="Search by UserName" id="search" onkeyup="filterTable()">
+        </div>
+    </div>
+    <div class="tableBody">
+
+        <table id="table">
+            <thead>
+                <th>
+                    <div class="max-content">
+                        S.N.
+                    </div>
+                </th>
+                <th>
+                    <div class="max-content">
+                        Full Name
+                    </div>
+
+                </th>
+
+                <th>
+                    <div class="max-content">
+                        Email
+                    </div>
+                </th>
+                <th>
+                    <div class="max-content">
+                        Address
+                    </div>
+                </th>
+                <th>
+                    <div class="max-content">
+                        Phone Number
+                    </div>
+                </th>
+                <th>
+                    <div class="max-content">
+                        Medical Condition
+                    </div>
+                </th>
+                <th>
+                    <div class="max-content">
+                        Profile
+                    </div>
+                </th>
+                <th>
+                    <div class="max-content">
+                        Joined Date
+                    </div>
+                </th>
+                <th>
+                    <div class="max-content">
+                        Package Name
+                    </div>
+                </th>
+                <th>
+                    <div class="max-content">
+                        Actions
+                    </div>
+                </th>
+            </thead>
+            <tbody>
+
+                {% for user in user_list %}
+
+                <tr>
+                    <td>
+                        <div class="max-content">
+                            {{user.id}}
+                        </div>
+                    </td>
+                    <td id="username">
+                        <div class="max-content">
+                            {{user.user_id.first_name}} {{user.user_id.last_name}}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="max-content">
+                            {{user.user_id.email}}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="max-content">
+                            {{user.address}}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="max-content">
+                            {{user.contact_number}}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="max-content">
+                            {{user.medical_condition}}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="max-content" id="userImage">
+
+                            <img src= "media/{{user.profile_image}}">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="max-content">
+                            {{user.enroll_date}}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="max-content">
+                            {{user.package_id.package_name}}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="flex align-items-center " style="gap: 20px;">
+                            <a href="" class="flex align-items-center edit">
+
+                                <svg width=" 25" height="24" viewBox="0 0 25 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M18.3471 2.22863C18.7115 2.07769 19.102 2 19.4965 2C19.8909 2 20.2815 2.07769 20.6459 2.22863C21.0103 2.37957 21.3414 2.60081 21.6203 2.87971C21.8992 3.15862 22.1204 3.48972 22.2714 3.85413C22.4223 4.21854 22.5 4.6091 22.5 5.00353C22.5 5.39796 22.4223 5.78852 22.2714 6.15293C22.1204 6.51733 21.8992 6.84844 21.6203 7.12735L15.5918 13.1558C15.1332 13.6145 14.5502 13.9261 13.9151 14.0531C13.9151 14.0532 13.9152 14.0531 13.9151 14.0531L11.1277 14.611C10.7826 14.6801 10.4258 14.5721 10.1769 14.3233C9.92803 14.0745 9.81994 13.7178 9.88889 13.3727L10.4457 10.5853C10.5732 9.94988 10.8861 9.36558 11.3447 8.90767L17.3727 2.87971C17.6516 2.60081 17.9827 2.37957 18.3471 2.22863ZM19.4965 4.10528C19.3785 4.10528 19.2617 4.12852 19.1527 4.17366C19.0437 4.2188 18.9447 4.28496 18.8613 4.36837L17.9073 5.32237L19.1779 6.59238L20.1316 5.63869C20.215 5.55528 20.2812 5.45625 20.3263 5.34727C20.3715 5.2383 20.3947 5.12149 20.3947 5.00353C20.3947 4.88557 20.3715 4.76876 20.3263 4.65978C20.2812 4.5508 20.215 4.45178 20.1316 4.36837C20.0482 4.28496 19.9492 4.2188 19.8402 4.17366C19.7312 4.12852 19.6144 4.10528 19.4965 4.10528ZM17.6893 8.08104L16.4187 6.81103L12.8328 10.3968C12.6685 10.561 12.5558 10.7706 12.5101 10.9984C12.5101 10.9984 12.5101 10.9983 12.5101 10.9984L12.2627 12.2368L13.5019 11.9888C13.73 11.9432 13.9387 11.8316 14.1032 11.6672L17.6893 8.08104ZM5.65792 6.21038C5.37875 6.21038 5.111 6.32129 4.91359 6.51869C4.71619 6.7161 4.60528 6.98385 4.60528 7.26302V18.8421C4.60528 19.1213 4.71619 19.389 4.91359 19.5864C5.111 19.7838 5.37875 19.8947 5.65792 19.8947H17.237C17.5162 19.8947 17.7839 19.7838 17.9813 19.5864C18.1787 19.389 18.2896 19.1213 18.2896 18.8421V15.6842C18.2896 15.1028 18.7609 14.6315 19.3423 14.6315C19.9236 14.6315 20.3949 15.1028 20.3949 15.6842V18.8421C20.3949 19.6796 20.0622 20.4828 19.47 21.0751C18.8777 21.6673 18.0745 22 17.237 22H5.65792C4.82039 22 4.01716 21.6673 3.42493 21.0751C2.83271 20.4828 2.5 19.6796 2.5 18.8421V7.26302C2.5 6.42549 2.83271 5.62226 3.42493 5.03003C4.01716 4.43781 4.82039 4.1051 5.65792 4.1051H8.81585C9.3972 4.1051 9.86849 4.57638 9.86849 5.15774C9.86849 5.7391 9.3972 6.21038 8.81585 6.21038H5.65792Z"
+                                        fill="currentColor" />
+                                </svg>
+                                <p>Edit</p>
+                            </a>
+                            <a href="" class="flex align-items-center delete">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    aria-hidden="true" role="img" width="1em" height="1em"
+                                    preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
+                                    <path fill="currentColor"
+                                        d="M6.5 7v4a.5.5 0 0 0 1 0V7a.5.5 0 0 0-1 0ZM9 6.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V7a.5.5 0 0 1 .5-.5ZM10 4h3a.5.5 0 0 1 0 1h-.553l-.752 6.776A2.5 2.5 0 0 1 9.21 14H6.79a2.5 2.5 0 0 1-2.485-2.224L3.552 5H3a.5.5 0 0 1 0-1h3a2 2 0 1 1 4 0ZM8 3a1 1 0 0 0-1 1h2a1 1 0 0 0-1-1ZM4.559 5l.74 6.666A1.5 1.5 0 0 0 6.79 13h2.42a1.5 1.5 0 0 0 1.49-1.334L11.442 5H4.56Z" />
+                                </svg>
+                                <p>Delete</p>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+
+                <tr>
+                    <td>
+
+                    </td>
+                    <td>
+
+                    </td>
+                    <td style="font-size: 1rem;">
+                        No Data Found
+                    </td>
+                    <td>
+
+                    </td>
+                    <td>
+
+                    </td>
+                    <td id="username">
+
+                    </td>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+
+{% block extra_js %}
+<script>
+    function filterTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("search");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("table");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].querySelectorAll("#username")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+{% endblock extra_js %}
+
+{% endblock content %}

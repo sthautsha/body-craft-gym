@@ -1,0 +1,94 @@
+{% extends 'base/home.html' %}
+{% block content %}
+<h2>Register new user</h2>
+<div class="breadCrumbs flex align-items-center">
+    <a href="{% url 'dashboard'  %}">
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+            width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M5 22h14a2 2 0 0 0 2-2v-9a1 1 0 0 0-.29-.71l-8-8a1 1 0 0 0-1.41 0l-8 8A1 1 0 0 0 3 11v9a2 2 0 0 0 2 2zm5-2v-5h4v5zm-5-8.59l7-7l7 7V20h-3v-5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v5H5z" />
+        </svg>
+    </a>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+        width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024">
+        <path fill="currentColor"
+            d="M340.864 149.312a30.592 30.592 0 0 0 0 42.752L652.736 512L340.864 831.872a30.592 30.592 0 0 0 0 42.752a29.12 29.12 0 0 0 41.728 0L714.24 534.336a32 32 0 0 0 0-44.672L382.592 149.376a29.12 29.12 0 0 0-41.728 0z" />
+    </svg>
+    <a href="">Register new user</a>
+</div>
+<div class="Register">
+    <h3>Add User Details</h3>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group uploader" onchange="imageUpload()">
+            <label class="imageUpload " for="id_profile_image">
+                <div class="label  flex flexColumn align-items-center justify-content-center ">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        aria-hidden="true" role="img" width="50" height="50" preserveAspectRatio="xMidYMid meet"
+                        viewBox="0 0 24 24">
+                        <g fill="none">
+                            <path d="M4 16v1a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </g>
+                    </svg>
+                    <p>Upload Profile</p>
+                </div>
+            </label>
+            {{ project_details_form.logo }}
+            {{ form.profile_image }}
+        </div>
+        <div class="form-group">
+            {{ form.package_id  }}
+        </div>
+        <div class="form-group">
+            {{ form.user_id  }}
+        </div>
+        <div class="form-group">
+            {{ form.full_name  }}
+        </div>
+        <div class="form-group">
+            {{ form.address  }}
+        </div>
+        <div class="form-group">
+            {{ form.contact_number }}
+        </div>
+        <div class="form-group">
+            {{ form.medical_condition }}
+        </div>
+        <div class="form-group">
+            {{ form.enroll_date }}
+        </div>
+        <div class="button">
+
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+{% block extra_js %}
+
+<script>
+    function imageUpload() {
+        var preview = document.querySelector(".imageUpload");
+        console.log(preview, "sad")
+        var file = document.getElementById("id_profile_image").files[0];
+        console.log(file);
+        var reader = new FileReader();
+        console.log(document.querySelector(".label"));
+        reader.onloadend = function () {
+            // console.log(`url(${reader.result})`);
+            preview.style.backgroundImage = `url(${reader.result})`;
+            document.querySelector(".label").style.display = "none";
+            // preview.src = reader.result;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+        }
+    }
+</script>
+{% endblock extra_js %}
+
+{% endblock content %}

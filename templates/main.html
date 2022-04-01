@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<!-- {% load static %} -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+    <title>Body Craft Gym</title>
+</head>
+
+<body>
+
+    {% include 'navbar.html' %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <section>
+        <div class="container">
+            <div class="hero-section flex align-items-center">
+                <div class="leftContainer">
+                    <h1>“Don’t be <span> afraid of being </span> a beginner.”</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. A eget
+                        nunc, risus ac eget. Sed eget praesent in convallis pharetra
+                        sagittis, mus commodo morbi. Etiam cum non aliquam odio integer
+                        facilisis in. Et quis laoreet scelerisque sit cras non in nibh
+                        pharetra. Suspendisse
+                    </p>
+                    <button class="primary-btn">Contact us</button>
+                </div>
+                <div class="rightContainer">
+                    <img src={% static "/image/homepage.png" %} alt="image" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="services">
+            <div class="service-header flex flexColumn align-items-center">
+                <h2>Everything you need out of the box</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet, in
+                    congue ut <br />
+                    morbi. Phasellus eu ultricies adipiscing ullamcorper mollis vitae
+                    maecenas <br />semper quisque.
+                </p>
+            </div>
+            <div class="service-body">
+                <div class="container">
+                    <div class="service flex align-items-center justify-content-between">
+                        <div class="leftContainer">
+                            <h3>0.1 Attendance</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit
+                                viverra volutpat sit<br />
+                                ultrices. Dapibus venenatis cursus quam viverra sed.Lorem
+                                ipsum dolor sit amet <br />, consectetur adipiscing elit. Sit
+                                viverra volutpat sit ultrices. Dapibus venenatis <br />
+                                cursus quam viverra sed.
+                            </p>
+                        </div>
+                        <div class="rightContainer">
+                            <div class="image">
+                                <img src={% static "/image/Attendance.png" %} alt="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service flex align-items-center justify-content-between">
+                        <div class="leftContainer">
+                            <h3>0.2 Diet Plan</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit
+                                viverra volutpat sit<br />
+                                ultrices. Dapibus venenatis cursus quam viverra sed.Lorem
+                                ipsum dolor sit amet <br />, consectetur adipiscing elit. Sit
+                                viverra volutpat sit ultrices. Dapibus venenatis <br />
+                                cursus quam viverra sed.
+                            </p>
+                        </div>
+                        <div class="rightContainer">
+                            <div class="image">
+                                <img src={% static "/image/Diet Plan.png" %} alt="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service flex align-items-center justify-content-between">
+                        <div class="leftContainer">
+                            <h3>0.3 Workout Plan</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit
+                                viverra volutpat sit<br />
+                                ultrices. Dapibus venenatis cursus quam viverra sed.Lorem
+                                ipsum dolor sit amet <br />, consectetur adipiscing elit. Sit
+                                viverra volutpat sit ultrices. Dapibus venenatis <br />
+                                cursus quam viverra sed.
+                            </p>
+                        </div>
+                        <div class="rightContainer">
+                            <div class="image">
+                                <img src="{% static "./image/Workout plan.png" %}" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service flex align-items-center justify-content-between">
+                        <div class="leftContainer">
+                            <h3>0.4 Cusotmer Support</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit
+                                viverra volutpat sit<br />
+                                ultrices. Dapibus venenatis cursus quam viverra sed.Lorem
+                                ipsum dolor sit amet <br />, consectetur adipiscing elit. Sit
+                                viverra volutpat sit ultrices. Dapibus venenatis <br />
+                                cursus quam viverra sed.
+                            </p>
+                        </div>
+                        <div class="rightContainer">
+                            <div class="image">
+                                <img src={% static "/image/Customer Support.png" %} alt="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service flex align-items-center justify-content-between">
+                        <div class="leftContainer">
+                            <h3>0.5 Billing Payement/ Online Payment</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit
+                                viverra volutpat sit<br />
+                                ultrices. Dapibus venenatis cursus quam viverra sed.Lorem
+                                ipsum dolor sit amet <br />, consectetur adipiscing elit. Sit
+                                viverra volutpat sit ultrices. Dapibus venenatis <br />
+                                cursus quam viverra sed.
+                            </p>
+                        </div>
+                        <div class="rightContainer">
+                            <div class="image">
+                                <img src={% static '/image/billing.png' %} alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="about-section">
+            <div class="container">
+                <div class="about-us flex justify-content-center align-items-center flexColumn">
+                    <h3>Why Body Craft?</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet, in
+                        congue ut <br />
+                        morbi. Phasellus eu ultricies adipiscing ullamcorper mollis vitae
+                        maecenas <br />semper quisque.
+                    </p>
+                    <div class="achievements flex justify-content-center align-items-center">
+                        <div class="achievement flex flexColumn align-items-center justify-content-center">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    aria-hidden="true" role="img" width="1em" height="1em"
+                                    preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024">
+                                    <path fill="currentColor"
+                                        d="M858.5 763.6a374 374 0 0 0-80.6-119.5a375.63 375.63 0 0 0-119.5-80.6c-.4-.2-.8-.3-1.2-.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1c-.4.2-.8.3-1.2.5c-44.8 18.9-85 46-119.5 80.6a375.63 375.63 0 0 0-80.6 119.5A371.7 371.7 0 0 0 136 901.8a8 8 0 0 0 8 8.2h60c4.4 0 7.9-3.5 8-7.8c2-77.2 33-149.5 87.8-204.3c56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c.1 4.4 3.6 7.8 8 7.8h60a8 8 0 0 0 8-8.2c-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z" />
+                                </svg>
+                            </div>
+                            <h2>60</h2>
+                            <h5>Client</h5>
+                        </div>
+                        <div class="achievement flex flexColumn align-items-center justify-content-center">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    aria-hidden="true" role="img" width="1em" height="1em"
+                                    preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512">
+                                    <path fill="currentColor"
+                                        d="M328.375 384l3.698 74.999l-75.862-52.719l-76.287 52.769L183.625 384h-32.039l-5.522 112h36.692l73.413-50.78L329.242 496h36.694l-5.522-112h-32.039z" />
+                                    <path fill="currentColor"
+                                        d="M415.409 154.914l-2.194-48.054L372.7 80.933l-25.932-40.519l-48.055-2.2L256 16.093l-42.713 22.126l-48.055 2.2L139.3 80.933L98.785 106.86l-2.194 48.054l-22.127 42.714l22.127 42.715l2.2 48.053l40.509 25.927l25.928 40.52l48.055 2.195L256 379.164l42.713-22.126l48.055-2.195l25.928-40.52l40.518-25.923l2.195-48.053l22.127-42.715zm-31.646 76.949L382 270.377l-32.475 20.78l-20.78 32.475l-38.515 1.76L256 343.125l-34.234-17.733l-38.515-1.76l-20.78-32.475L130 270.377l-1.759-38.514l-17.741-34.235l17.737-34.228L130 124.88l32.471-20.78l20.78-32.474l38.515-1.76L256 52.132l34.234 17.733l38.515 1.76l20.78 32.474L382 124.88l1.759 38.515l17.741 34.233z" />
+                                </svg>
+                            </div>
+                            <h2>4.5</h2>
+                            <h5>Ratings</h5>
+                        </div>
+                        <div class="achievement flex flexColumn align-items-center justify-content-center">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    aria-hidden="true" role="img" width="1em" height="1em"
+                                    preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024">
+                                    <path fill="currentColor"
+                                        d="M858.5 763.6a374 374 0 0 0-80.6-119.5a375.63 375.63 0 0 0-119.5-80.6c-.4-.2-.8-.3-1.2-.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1c-.4.2-.8.3-1.2.5c-44.8 18.9-85 46-119.5 80.6a375.63 375.63 0 0 0-80.6 119.5A371.7 371.7 0 0 0 136 901.8a8 8 0 0 0 8 8.2h60c4.4 0 7.9-3.5 8-7.8c2-77.2 33-149.5 87.8-204.3c56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c.1 4.4 3.6 7.8 8 7.8h60a8 8 0 0 0 8-8.2c-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z" />
+                                </svg>
+                            </div>
+                            <h2>60</h2>
+                            <h5>Client</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="memberships">
+            <img src={% static '/image/globe.png' %} alt="" />
+            <div class="memberShip">
+                <div class="container flex flexColumn align-items-center">
+                    <h3>Our Membership Plans</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet, in
+                        congue ut <br />morbi. Phasellus eu ultricies adipiscing
+                        ullamcorper mollis vitae maecenas<br />
+                        semper quisque.
+                    </p>
+
+                    <div class="plans flex align-items-center justify-content-center">
+                        <div class="plan">
+                            <div class="plan-header flex align-items-center justify-content-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    aria-hidden="true" role="img" width="1em" height="1em"
+                                    preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
+                                    <path fill="currentColor"
+                                        d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576L6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76l7.494-7.493Z" />
+                                </svg>
+                                <h6>Basic Plans</h6>
+                            </div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac
+                                molestie aliquet euismod egestas. Lacus pretium suspendisse et
+                                in. Tellus feugiat elit donec
+                            </p>
+                            <div class="plan-body">
+                                <div class="lists">
+                                    <div class="flex justify-content-between">
+                                        <h5>3 Month(Gym)</h5>
+                                        <p>8000</p>
+                                    </div>
+                                    <div class="flex justify-content-between">
+                                        <h5>6 Month(Gym)</h5>
+                                        <p>14000</p>
+                                    </div>
+                                    <div class="flex justify-content-between">
+                                        <h5>12 Month(Gym)</h5>
+                                        <p>26000</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plan">
+                            <div class="plan-header flex align-items-center justify-content-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    aria-hidden="true" role="img" width="1em" height="1em"
+                                    preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
+                                    <path fill="currentColor"
+                                        d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576L6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76l7.494-7.493Z" />
+                                </svg>
+                                <h6>Basic Plans</h6>
+                            </div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac
+                                molestie aliquet euismod egestas. Lacus pretium suspendisse et
+                                in. Tellus feugiat elit donec
+                            </p>
+                            <div class="plan-body">
+                                <div class="lists">
+                                    <div class="flex justify-content-between">
+                                        <h5>3 Month(Gym)</h5>
+                                        <p>8000</p>
+                                    </div>
+                                    <div class="flex justify-content-between">
+                                        <h5>6 Month(Gym)</h5>
+                                        <p>14000</p>
+                                    </div>
+                                    <div class="flex justify-content-between">
+                                        <h5>12 Month(Gym)</h5>
+                                        <p>26000</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plan">
+                            <div class="plan-header flex align-items-center justify-content-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    aria-hidden="true" role="img" width="1em" height="1em"
+                                    preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
+                                    <path fill="currentColor"
+                                        d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576L6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76l7.494-7.493Z" />
+                                </svg>
+                                <h6>Basic Plans</h6>
+                            </div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac
+                                molestie aliquet euismod egestas. Lacus pretium suspendisse et
+                                in. Tellus feugiat elit donec
+                            </p>
+                            <div class="plan-body">
+                                <div class="lists">
+                                    <div class="flex justify-content-between">
+                                        <h5>3 Month(Gym)</h5>
+                                        <p>8000</p>
+                                    </div>
+                                    <div class="flex justify-content-between">
+                                        <h5>6 Month(Gym)</h5>
+                                        <p>14000</p>
+                                    </div>
+                                    <div class="flex justify-content-between">
+                                        <h5>12 Month(Gym)</h5>
+                                        <p>26000</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img src={% static '/image/globe.png' %} alt="" />
+        </div>
+    </section>
+    <section>
+        <div class="contact">
+            <div class="container">
+                <div class="flex flexColumn justify-content-center align-items-center">
+                    <h3>Contact Us</h3>
+                    <p>Get in touch with us</p>
+                </div>
+
+                <div class="flex contactForm align-items-start">
+                    <div class="leftContainer">
+                        <div class="location">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    aria-hidden="true" role="img" width="1em" height="1em"
+                                    preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                    <g fill="none">
+                                        <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path
+                                            d="M12 2a8 8 0 0 0-8 8c0 1.892.402 3.13 1.5 4.5L12 22l6.5-7.5c1.098-1.37 1.5-2.608 1.5-4.5a8 8 0 0 0-8-8z"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </g>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Location</h4>
+                                <p>M84X+7R7, महालक्ष्मी</p>
+                            </div>
+                        </div>
+                        <div class="location">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    aria-hidden="true" role="img" width="1em" height="1em"
+                                    preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32">
+                                    <path fill="currentColor"
+                                        d="m20.33 21.48l2.24-2.24a2.19 2.19 0 0 1 2.34-.48l2.73 1.09a2.18 2.18 0 0 1 1.36 2v5A2.17 2.17 0 0 1 26.72 29C7.59 27.81 3.73 11.61 3 5.41A2.17 2.17 0 0 1 5.17 3H10a2.16 2.16 0 0 1 2 1.36l1.09 2.73a2.16 2.16 0 0 1-.47 2.34l-2.24 2.24s1.29 8.73 9.95 9.81Z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Phone Number</h4>
+                                <p>980-3232683</p>
+                            </div>
+                        </div>
+                        <div class="location">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    aria-hidden="true" role="img" width="1em" height="1em"
+                                    preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10s10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8s8 3.589 8 8s-3.589 8-8 8z" />
+                                    <path fill="currentColor" d="M13 7h-2v6h6v-2h-4z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Opening Time</h4>
+                                <p>6am to 7pm</p>
+                            </div>
+                        </div>
+                        <div class="location">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    aria-hidden="true" role="img" width="1em" height="1em"
+                                    preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
+                                    <path fill="currentColor" fill-rule="evenodd"
+                                        d="m1 3.5l.5-.5h13l.5.5v9l-.5.5h-13l-.5-.5v-9zm1 1.035V12h12V4.536L8.31 8.9H7.7L2 4.535zM13.03 4H2.97L8 7.869L13.03 4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Mail</h4>
+                                <p>bodycraft21@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rightContainer">
+                        <form action="
+                  ">
+                            <div class="formgroup">
+                                <input type="text" placeholder="First Name" />
+                            </div>
+                            <div class="formgroup">
+                                <input type="text" placeholder="Last Name" />
+                            </div>
+                            <div class="formgroup">
+                                <input type="text" placeholder="Contact Number" />
+                            </div>
+                            <div class="formgroup">
+                                <input type="text" placeholder="Address" />
+                            </div>
+                            <div class="formgroup">
+                                <textarea type="text" placeholder="Message" rows="10"></textarea>
+                            </div>
+                            <button class="primary-btn">submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <footer>
+            <div class="container"></div>
+        </footer>
+    </section>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

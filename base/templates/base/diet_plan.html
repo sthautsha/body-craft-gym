@@ -1,0 +1,75 @@
+{% extends 'base/home.html' %}
+
+{% block content %}
+
+<div class="diet_plan">
+    <h2>Deit Plan</h2>
+    <div class="breadCrumbs flex align-items-center">
+        <a href="{% url 'dashboard'  %}">
+
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                <path fill="currentColor"
+                    d="M5 22h14a2 2 0 0 0 2-2v-9a1 1 0 0 0-.29-.71l-8-8a1 1 0 0 0-1.41 0l-8 8A1 1 0 0 0 3 11v9a2 2 0 0 0 2 2zm5-2v-5h4v5zm-5-8.59l7-7l7 7V20h-3v-5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v5H5z" />
+            </svg>
+        </a>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+            width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024">
+            <path fill="currentColor"
+                d="M340.864 149.312a30.592 30.592 0 0 0 0 42.752L652.736 512L340.864 831.872a30.592 30.592 0 0 0 0 42.752a29.12 29.12 0 0 0 41.728 0L714.24 534.336a32 32 0 0 0 0-44.672L382.592 149.376a29.12 29.12 0 0 0-41.728 0z" />
+        </svg>
+        <a href="">Deit plan</a>
+    </div>
+    <div class="flex align-items-center plans" style="gap:20px">
+        {% for diet_plan in diet_plan_list %}
+
+        <div class="card">
+            <h4>{{diet_plan.category}}
+            </h4>
+            <div class="actions">
+                <a href="{% url 'display_reccomended_diet' diet_plan.id %}"><svg xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em"
+                        height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2">
+                            <path
+                                d="M21.257 10.962c.474.62.474 1.457 0 2.076C19.764 14.987 16.182 19 12 19c-4.182 0-7.764-4.013-9.257-5.962a1.692 1.692 0 0 1 0-2.076C4.236 9.013 7.818 5 12 5c4.182 0 7.764 4.013 9.257 5.962Z" />
+                            <circle cx="12" cy="12" r="3" />
+                        </g>
+                    </svg></a>
+                <a href="{% url 'update_diet_plan' diet_plan.id %}>%}"><svg xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em"
+                        height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2">
+                            <path
+                                d="m16.474 5.408l2.118 2.117m-.756-3.982L12.109 9.27a2.118 2.118 0 0 0-.58 1.082L11 13l2.648-.53c.41-.082.786-.283 1.082-.579l5.727-5.727a1.853 1.853 0 1 0-2.621-2.621Z" />
+                            <path d="M19 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3" />
+                        </g>
+                    </svg></a>
+                <a href="{% url 'delete_diet_plan' diet_plan.id %}>%}"><svg xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em"
+                        height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
+                        <path fill="currentColor"
+                            d="M6.5 7v4a.5.5 0 0 0 1 0V7a.5.5 0 0 0-1 0ZM9 6.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V7a.5.5 0 0 1 .5-.5ZM10 4h3a.5.5 0 0 1 0 1h-.553l-.752 6.776A2.5 2.5 0 0 1 9.21 14H6.79a2.5 2.5 0 0 1-2.485-2.224L3.552 5H3a.5.5 0 0 1 0-1h3a2 2 0 1 1 4 0ZM8 3a1 1 0 0 0-1 1h2a1 1 0 0 0-1-1ZM4.559 5l.74 6.666A1.5 1.5 0 0 0 6.79 13h2.42a1.5 1.5 0 0 0 1.49-1.334L11.442 5H4.56Z" />
+                    </svg></a>
+            </div>
+        </div>
+
+        {% endfor %}
+
+        <a href="{% url 'create_diet_plan' %}">
+            <div class="button">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                    role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32">
+                    <path fill="currentColor"
+                        d="M16 4c6.6 0 12 5.4 12 12s-5.4 12-12 12S4 22.6 4 16S9.4 4 16 4m0-2C8.3 2 2 8.3 2 16s6.3 14 14 14s14-6.3 14-14S23.7 2 16 2z" />
+                    <path fill="currentColor" d="M24 15h-7V8h-2v7H8v2h7v7h2v-7h7z" /></svg>
+            </div>
+        </a>
+    </div>
+
+
+</div>
+
+{% endblock content %}

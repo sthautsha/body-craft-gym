@@ -1,0 +1,48 @@
+<!-- {% load static %} -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+    <title>Body Craft Gym</title>
+</head>
+
+<body>
+    <section class="loginContainer flex justify-content-center align-items-center">
+        <div class="login">
+            <div class="logo">
+                <h3>Body Craft</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, ad? Perferendis hic cumque eos
+                    nobis repudiandae, minus accusamus iusto veritatis!</p>
+            </div>
+            <div class="form">
+                <form action="" method=POST>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="">User Name</label>
+                        <input type="text" name="username" />
+                    </div>
+                    <div class="form-group">
+                        <label for="">Password </label>
+                        <div class="password flex align-items-center ">
+                            <input type="text" name="password" id="password" />
+                            <div id="eyeIcon" onclick="toggleBtn()">
+
+                            </div>
+                        </div>
+                    </div>
+                    <button class="primary-btn" type="Submit">
+                        Login
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+
+<script src="{% static 'js/script.js' %}"></script>
+
+</html>
