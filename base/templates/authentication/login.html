@@ -7,11 +7,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="{% static '/css/style.css' %}" />
-    <title>Body Craft Gym</title>
+    <title>Body Crafts Gym</title>
 </head>
 
 <body>
+    {% comment %} {% if messages %}
+    <ul class="messages" style="color: red; margin-bottom: 12px" id="message">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %} {% endcomment %}
+    {% if messages %}
+    <div class="modalBody">
+        <div class="modal flex  justify-content-center align-items-center">
+            <div class="modalContainer">
+                <div class="flex flexColumn justify-content-center align-items-center">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
+                        viewBox="0 0 24 24">
+                        <g fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path stroke-linecap="round" d="M12 7v6m0 3.5v.5" />
+                        </g>
+                    </svg>
+                    <p>
+                        <ul class="messages" style="color: red; margin-bottom: 12px" id="message">
+                            {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                                {% endfor %}
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
     <section class="loginContainer flex justify-content-center align-items-center">
+
         <div class="login">
             <div class="logo">
                 <h3>Body Craft</h3>
@@ -19,11 +53,12 @@
                     nobis repudiandae, minus accusamus iusto veritatis!</p>
             </div>
             <div class="form">
+
                 <form action="" method=POST>
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="">User Name</label>
-                        <input type="text" name="username" />
+                        <input type="text" name="username" id="username" />
                     </div>
                     <div class="form-group">
                         <label for="">Password </label>
@@ -41,8 +76,24 @@
             </div>
         </div>
     </section>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script type="text/javascript">
+        setTimeout(() => {
+            add()
+        }, 500);
+
+        function add() {
+            modal = document.querySelector(".modal").classList.add("active");
+        }
+        setTimeout(() => {
+            remove()
+        }, 4000);
+
+        function remove() {
+            document.querySelector(".modal").classList.remove("active")
+        }
+    </script>
 </body>
 
-<script src="{% static 'js/script.js' %}"></script>
 
 </html>

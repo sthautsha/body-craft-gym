@@ -45,6 +45,12 @@
                     </div>
 
                 </th>
+                <th>
+                    <div class="max-content">
+                        User Name
+                    </div>
+
+                </th>
 
                 <th>
                     <div class="max-content">
@@ -102,6 +108,11 @@
                             {{user.user_id.first_name}} {{user.user_id.last_name}}
                         </div>
                     </td>
+                    <td id="username">
+                        <div class="max-content">
+                            {{user.user_id.username}}
+                        </div>
+                    </td>
                     <td>
                         <div class="max-content">
                             {{user.user_id.email}}
@@ -125,7 +136,7 @@
                     <td>
                         <div class="max-content" id="userImage">
 
-                            <img src= "media/{{user.profile_image}}">
+                            <img src="media/{{user.profile_image}}">
                         </div>
                     </td>
                     <td>

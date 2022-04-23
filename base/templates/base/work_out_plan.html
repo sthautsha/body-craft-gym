@@ -29,11 +29,15 @@
     <div class="table card" style="padding:20px">
 
         <div class="flex align-items-center justify-content-between tableheader">
-            <a href="{% url 'create_exercise_category' %}">
+            {% if request.user.username == "admin"%}
+            <a href="{% url 'create_exercise_category' work_out_plan.id %}">
                 <div>
                     Add Category
                 </div>
             </a>
+            {%else%}
+            <div></div>
+            {%endif%}
             <div class="searchContainer">
                 <input type="text" placeholder="Search by category" id="search" onkeyup="filterTable()">
             </div>
@@ -50,19 +54,20 @@
                         <div class="max-content">
                             Workout category
                         </div>
-
                     </th>
                     <th>
                         <div class="max-content">
-
                             Workout Plan
                         </div>
                     </th>
+                    {% if request.user.username == "admin"%}
                     <th>
                         <div class="max-content">
                             Actions
                         </div>
                     </th>
+                    {%else%}
+                    {%endif%}
                 </thead>
                 <tbody>
                     {% for exercise_category in exercise_category_list %}
@@ -83,12 +88,13 @@
 
                         <td>
                             <div class="max-content">
-                                {{exercise_category.category}}
+                                {{exercise_category.work_out_plan_id}}
                             </div>
                         </td>
+                        {% if request.user.username == "admin"%}
                         <td style="width: 16rem;">
                             <div class="flex align-items-center " style="gap: 20px;">
-                                <a href="{% url 'update_exercise_category' exercise_category.id %}"
+                                <a href="{% url 'update_exercise_category' work_out_plan.id exercise_category.id %}"
                                     class="flex align-items-center edit">
 
                                     <svg width=" 25" height="24" viewBox="0 0 25 24" fill="none"
@@ -99,7 +105,7 @@
                                     </svg>
                                     <p>Edit</p>
                                 </a>
-                                <a href="{% url 'delete_exercise_category' exercise_category.id %}"
+                                <a href="{% url 'delete_exercise_category' work_out_plan.id exercise_category.id %}"
                                     class="flex align-items-center delete">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                         aria-hidden="true" role="img" width="1em" height="1em"
@@ -113,8 +119,17 @@
 
 
                         </td>
+                        {%else%}
+                        {%endif%}
                     </tr>
+                    {% empty %}
+                    <td></td>
+                    <td></td>
+                    <td>No Data</td>
+                    <td></td>
                     {% endfor %}
+
+
                 </tbody>
             </table>
         </div>

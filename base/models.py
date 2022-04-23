@@ -41,10 +41,9 @@ class Billing(models.Model):
     billing_date = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default=False)
 
-    
     def remainingDays(self):
         Day = self.membership_start_date - date.today()
-        return Day.days 
+        return Day.days
 
     def totalPrice(self):
         price = self.package_id.amount - (self.discount / 100) * self.package_id.amount
@@ -62,6 +61,11 @@ class DietPlan(models.Model):
 
     def __str__(self):
         return self.category
+
+    @classmethod
+    def create(cls, category):
+        diet_plan = cls(category=category)
+        return diet_plan
 
 
 class ReccommendedDiet(models.Model):
@@ -99,6 +103,7 @@ class Exercise(models.Model):
 
 class Equipments(models.Model):
     equipment_name = models.CharField(max_length=200)
+    equipment_Desc = models.TextField(null=True , blank=True)
 
     def __str__(self):
         return self.equipment_name

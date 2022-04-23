@@ -22,7 +22,6 @@
     </div>
     <div class="flex align-items-center plans" style="gap:20px">
         {% for diet_plan in diet_plan_list %}
-
         <div class="card">
             <h4>{{diet_plan.category}}
             </h4>
@@ -37,7 +36,8 @@
                             <circle cx="12" cy="12" r="3" />
                         </g>
                     </svg></a>
-                <a href="{% url 'update_diet_plan' diet_plan.id %}>%}"><svg xmlns="http://www.w3.org/2000/svg"
+                {% if request.user.username == "admin"%}
+                <a href="{% url 'update_diet_plan' diet_plan.id %}"><svg xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em"
                         height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
                         <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -47,17 +47,21 @@
                             <path d="M19 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3" />
                         </g>
                     </svg></a>
-                <a href="{% url 'delete_diet_plan' diet_plan.id %}>%}"><svg xmlns="http://www.w3.org/2000/svg"
+                <a href="{% url 'delete_diet_plan' diet_plan.id %}"><svg xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em"
                         height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
                         <path fill="currentColor"
                             d="M6.5 7v4a.5.5 0 0 0 1 0V7a.5.5 0 0 0-1 0ZM9 6.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V7a.5.5 0 0 1 .5-.5ZM10 4h3a.5.5 0 0 1 0 1h-.553l-.752 6.776A2.5 2.5 0 0 1 9.21 14H6.79a2.5 2.5 0 0 1-2.485-2.224L3.552 5H3a.5.5 0 0 1 0-1h3a2 2 0 1 1 4 0ZM8 3a1 1 0 0 0-1 1h2a1 1 0 0 0-1-1ZM4.559 5l.74 6.666A1.5 1.5 0 0 0 6.79 13h2.42a1.5 1.5 0 0 0 1.49-1.334L11.442 5H4.56Z" />
                     </svg></a>
+                {%else%}
+
+                {%endif%}
+
+
             </div>
         </div>
-
         {% endfor %}
-
+        {% if request.user.username == "admin"%}
         <a href="{% url 'create_diet_plan' %}">
             <div class="button">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
@@ -67,9 +71,10 @@
                     <path fill="currentColor" d="M24 15h-7V8h-2v7H8v2h7v7h2v-7h7z" /></svg>
             </div>
         </a>
+        {%else%}
+
+        {%endif%}
     </div>
-
-
 </div>
 
 {% endblock content %}

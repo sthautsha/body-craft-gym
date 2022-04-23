@@ -30,7 +30,7 @@ class MembershipPlanForm(ModelForm):
 class PackageForm(ModelForm):
     class Meta:
         model = Package
-        fields = "__all__"
+        fields = ["package_name", "amount"]
 
 
 class BillingForm(ModelForm):
@@ -51,7 +51,7 @@ class DietPlanForm(ModelForm):
 class ReccommendedDietForm(ModelForm):
     class Meta:
         model = ReccommendedDiet
-        fields = "__all__"
+        fields = ["time", "recommendation"]
 
 
 class WorkOutPlanForm(ModelForm):
@@ -63,13 +63,13 @@ class WorkOutPlanForm(ModelForm):
 class ExerciseCategoryForm(ModelForm):
     class Meta:
         model = ExerciseCategory
-        fields = "__all__"
+        fields = ["category"]
 
 
 class ExerciseForm(ModelForm):
     class Meta:
         model = Exercise
-        fields = "__all__"
+        fields = ["exercise_name"]
 
 
 class EquipmentsForm(ModelForm):
@@ -80,10 +80,12 @@ class EquipmentsForm(ModelForm):
 
 class NewUserForm(UserCreationForm):
 
-    email = forms.EmailField(required=True,
-     widget=forms.TextInput(
+    email = forms.EmailField(
+        required=True,
+        widget=forms.TextInput(
             attrs={"class": "form-control", "placeholder": "Enter your Email"}
-        ),)
+        ),
+    )
 
     first_name = forms.CharField(
         label="first name",

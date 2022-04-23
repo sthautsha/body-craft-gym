@@ -1,0 +1,16 @@
+{% extends 'base/home.html' %}
+
+{% block content %}
+<p>Profile</p>
+<h4>{{user_list.address}}</h4> 
+<h4>{{user_list.package_id.package_name}}</h4> 
+<h4>{{user_list.package_id.membership_plan_id.name}}</h4> 
+<h4>{{user_list.package_id.membership_plan_id.description}}</h4>
+<h4>{{user_list.contact_number}}</h4>
+<h4>{{user_list.medical_condition}}</h4>
+<h4>{{user_list.enroll_date}}</h4>
+<h4>{{user_list.user_id.username}}</h4>
+<h4>{{user_list.user_id.email_address}}</h4>
+<h4>{{user_list.user_id.first_name}}</h4>
+<h4>{{user_list.user_id.last_name}}</h4>
+{% endblock content %}

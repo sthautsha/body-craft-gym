@@ -1,18 +1,86 @@
 {% extends 'base/home.html' %}
 
 {% block content %}
-<h1>{{current_time}}</h1>
-    <div >
-        {% for attendance in attendance_list %}
-            <h5>{{attendance.user_id.username}}</h5>
-            {% if attendance.check_in == False%}
-                <h5>{{attendance.check_in}} -- Check out</h5>
-            {% else %}
-                <h5>{{attendance.check_in}} -- Check in</h5>
-            {% endif %}
-            <h5>{{attendance.check_in_date}}</h5>
-        {% endfor %}
-    </div>   
+<h2> Attendance</h2>
+<div class="breadCrumbs flex align-items-center">
+    <a href="{% url 'dashboard'  %}">
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+            width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M5 22h14a2 2 0 0 0 2-2v-9a1 1 0 0 0-.29-.71l-8-8a1 1 0 0 0-1.41 0l-8 8A1 1 0 0 0 3 11v9a2 2 0 0 0 2 2zm5-2v-5h4v5zm-5-8.59l7-7l7 7V20h-3v-5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v5H5z" />
+        </svg>
+    </a>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+        width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024">
+        <path fill="currentColor"
+            d="M340.864 149.312a30.592 30.592 0 0 0 0 42.752L652.736 512L340.864 831.872a30.592 30.592 0 0 0 0 42.752a29.12 29.12 0 0 0 41.728 0L714.24 534.336a32 32 0 0 0 0-44.672L382.592 149.376a29.12 29.12 0 0 0-41.728 0z" />
+    </svg>
+    <a href="#">Attendance</a>
+
+</div>
+<div class="table card" style="padding:20px">
+
+    <div class="tableBody">
+        <table id="table">
+            <thead>
+                <th>
+                    <div class="max-content">
+                        Username
+                    </div>
+                </th>
+
+                <th>
+                    <div class="max-content">
+                        Attendance
+                    </div>
+                </th>
+                <th>
+                    <div class="max-content">
+                        Date
+                    </div>
+                </th>
+
+            </thead>
+            <tbody>
+                {% for attendance in attendance_list %}
+                <tr>
+                    <td>
+                        <div class="max-content">
+                            {{attendance.user_id.username}}
+                        </div>
+                    </td>
+                    {% if attendance.check_in == False%}
+                    <td>
+                        <div class="max-content">
+                            Check Out
+                        </div>
+                    </td>
+                    {% else %}
+                    <td>
+                        Check In
+                    </td>
+                    {% endif %}
+                    <td>
+                        <div class="max-content">
+                            {{attendance.check_in_date}}
+                        </div>
+                    </td>
+
+                </tr>
+                {% empty %}
+                <td></td>
+                <td></td>
+                <td>No Data</td>
+                <td></td>
+                {% endfor %}
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
 
 {% endblock content %}

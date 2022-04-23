@@ -8,6 +8,8 @@ from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.core.mail import send_mail
 from .models import (
     Attendance,
     Billing,
@@ -37,37 +39,190 @@ from .form import (
 )
 
 
+def contact_page(request):
+    
+    if request.method == "POST":
+       
+        subject = "BODY CRAFT GYM"
+        message = request.POST["message"]
+        body = "Email"+ request.user.email + "username" + request.user.username +" "+message
+        print(message)
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = ["jhigudoctor@gmail.com"]
+        send_mail(subject, body, email_from, recipient_list)
+        context = {"sucess_message": "We recieved your email will respond shortly !!"}
+        return render(request, "base/contact_form.html", context)
+    else:
+        return render(request, "base/contact_form.html")
+
+
+def profile(request):
+    user_list = ClientUser.objects.get(user_id=request.user.id)
+    context = {"user_list": user_list}
+    return render(request, "base/user_profile.html", context)
+
+
 def landingpage(request):
     return render(request, "main.html")
+
+
+
+
 
 
 @login_required
 def dashboard(request):
     print("ddd")
     user = ClientUser.objects.get(user_id=request.user)
+    user_list = ClientUser.objects.all()
     print("shsh")
     # print(user.profile_image)
+    package_list = Package.objects.all()
+    equipment_list = Equipments.objects.all()
+    workout_plan_list = WorkOutPlan.objects.all()
+
+    print(workout_plan_list.count())
+   
     bill_list = (
         Billing.objects.all()
         .select_related("package_id")
         .filter(user_id=request.user, status=True)
-    )
-    context = {
+    )   
+    print(package_list.count())
+    if request.user.username == "admin": 
+        context = {
+        "user_count": user_list.count(),
+        "bill_count": package_list.count(),
+        "equipment_count": equipment_list.count(),
+        "work_out_list": workout_plan_list.count(),
+        "user": user,
+    }
+    else : 
+        context = {
         "attendance": user_attendance_status(request),
         "bill_list": bill_list,
         "user": user,
-    }
+        "user_count": user_list.count(),
+        }
 
+    
     return render(request, "base/dashboard.html", context)
 
 
 def home(request):
-
+    user = ClientUser.objects.get(user_id=request.user)
     context = {
         "membership_plan_list": display_membership_plans(),
-        "workout_plan_list": display_workout_plan(),
+        "workout_plan_list": display_workout_plan(),\
+    "user": user,
     }
     return render(request, "base/home.html", context)
+
+
+# diet plans
+
+
+@login_required
+def dietplan(request):
+    user = ClientUser.objects.get(user_id=request.user)
+    context = {
+        "diet_plan_list": display_diet_plans(),
+        "user": user,
+        
+    }
+    return render(request, "base/diet_Plan.html", context)
+
+
+def display_diet_plans():
+    diet_plan_list = DietPlan.objects.all
+    return diet_plan_list
+
+
+@login_required
+def create_diet_plan(request):
+    user = ClientUser.objects.get(user_id=request.user)
+    form = DietPlanForm()
+    if request.method == "POST":
+        form = DietPlanForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("dietPlan")
+    context = {"form": form,
+      "user": user,}
+    return render(request, "base/diet_plan_form.html", context)
+
+
+@login_required
+def update_diet_plan(request, pk):
+    user = ClientUser.objects.get(user_id=request.user)
+    diet_plan = DietPlan.objects.get(id=pk)
+    form = DietPlanForm(instance=diet_plan)
+    if request.method == "POST":
+        form = DietPlanForm(request.POST, instance=diet_plan)
+        if form.is_valid():
+            form.save()
+            return redirect("dietPlan")
+    context = {"form": form,"user": user,}
+    return render(request, "base/diet_plan_form.html", context)
+
+
+@login_required
+def delete_diet_plan(request, pk):
+   
+    diet_plan = DietPlan.objects.get(id=pk)
+    if request.method == "POST":
+        diet_plan.delete()
+        return redirect("dietPlan")
+    return render(request, "base/delete.html", {"obj": diet_plan})
+
+
+# reccomended diet
+
+
+@login_required
+def display_reccomended_diet(request, pk):
+    user = ClientUser.objects.get(user_id=request.user)
+    diet_plan = DietPlan.objects.get(id=pk)
+    reccomended_diet_list = ReccommendedDiet.objects.filter(diet_plan_id=pk)
+    context = {"diet_plan": diet_plan, "reccomended_diet_list": reccomended_diet_list,"user": user,}
+    return render(request, "base/dietPlan_category.html", context)
+
+
+@login_required
+def create_reccomended_diet(request, pk):
+    form = ReccommendedDietForm()
+    if request.method == "POST":
+        form = ReccommendedDietForm(request.POST)
+        if form.is_valid():
+            diet_plan = DietPlan.objects.get(id=pk)
+            data = form.save(commit=False)
+            data.diet_plan_id = diet_plan
+            data.save()
+            return redirect("display_reccomended_diet", pk)
+    context = {"form": form}
+    return render(request, "base/reccommended_diet_form.html", context)
+
+
+@login_required
+def update_reccomended_diet(request, diet_plan_id, pk):
+    diet_plan = ReccommendedDiet.objects.get(id=pk)
+    form = ReccommendedDietForm(instance=diet_plan)
+    if request.method == "POST":
+        form = ReccommendedDietForm(request.POST, instance=diet_plan)
+        if form.is_valid():
+            form.save()
+            return redirect("display_reccomended_diet", diet_plan_id)
+    context = {"form": form}
+    return render(request, "base/reccommended_diet_form.html", context)
+
+
+@login_required
+def delete_reccomended_diet(request, diet_plan_id, pk):
+    diet_plan = ReccommendedDiet.objects.get(id=pk)
+    if request.method == "POST":
+        diet_plan.delete()
+        return redirect("display_reccomended_diet", diet_plan_id)
+    return render(request, "base/delete.html", {"obj": diet_plan})
 
 
 # Membership plan
@@ -118,13 +273,16 @@ def delete_membership_plan(request, pk):
 
 # packages
 @login_required
-def create_package(request):
+def create_package(request, pk):
     form = PackageForm()
     if request.method == "POST":
         form = PackageForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect("membership")
+            membership_plan = MembershipPlan.objects.get(id=pk)
+            data = form.save(commit=False)
+            data.membership_plan_id = membership_plan
+            data.save()
+            return redirect("display_packages", pk)
     context = {"form": form}
     return render(request, "base/package_form.html", context)
 
@@ -138,165 +296,25 @@ def display_packages(request, pk):
 
 
 @login_required
-def update_package(request, pk):
+def update_package(request, membership, pk):
     package = Package.objects.get(id=pk)
     form = PackageForm(instance=package)
     if request.method == "POST":
         form = PackageForm(request.POST, instance=package)
         if form.is_valid():
             form.save()
-            return redirect("membership")
+            return redirect("display_packages", membership)
     context = {"form": form}
     return render(request, "base/package_form.html", context)
 
 
 @login_required
-def delete_package(request, pk):
+def delete_package(request, membership, pk):
     package = Package.objects.get(id=pk)
     if request.method == "POST":
         package.delete()
-        return redirect("membership")
+        return redirect("display_packages", membership)
     return render(request, "base/delete.html", {"obj": package})
-
-
-# diet plans
-
-
-@login_required
-def dietplan(request):
-    context = {
-        "diet_plan_list": display_diet_plans(),
-    }
-    return render(request, "base/diet_Plan.html", context)
-
-
-def display_diet_plans():
-    diet_plan_list = DietPlan.objects.all
-    return diet_plan_list
-
-
-@login_required
-def create_diet_plan(request):
-    form = DietPlanForm()
-    if request.method == "POST":
-        form = DietPlanForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("dietPlan")
-    context = {"form": form}
-    return render(request, "base/diet_plan_form.html", context)
-
-
-@login_required
-def update_diet_plan(request, pk):
-    diet_plan = DietPlan.objects.get(id=pk)
-    form = DietPlanForm(instance=diet_plan)
-    if request.method == "POST":
-        form = DietPlanForm(request.POST, instance=diet_plan)
-        if form.is_valid():
-            form.save()
-            return redirect("dietPlan")
-    context = {"form": form}
-    return render(request, "base/diet_plan_form.html", context)
-
-
-@login_required
-def delete_diet_plan(request, pk):
-    diet_plan = DietPlan.objects.get(id=pk)
-    if request.method == "POST":
-        diet_plan.delete()
-        return redirect("dietPlan")
-    return render(request, "base/delete.html", {"obj": diet_plan})
-
-
-# reccomended diet
-
-
-@login_required
-def display_reccomended_diet(request, pk):
-    diet_plan = DietPlan.objects.get(id=pk)
-    reccomended_diet_list = ReccommendedDiet.objects.filter(diet_plan_id=pk)
-    context = {"diet_plan": diet_plan, "reccomended_diet_list": reccomended_diet_list}
-    return render(request, "base/dietPlan_category.html", context)
-
-
-@login_required
-def create_reccomended_diet(request):
-    form = ReccommendedDietForm()
-    if request.method == "POST":
-        form = ReccommendedDietForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("dietPlan")
-    context = {"form": form}
-    return render(request, "base/reccommended_diet_form.html", context)
-
-
-@login_required
-def update_reccomended_diet(request, pk):
-    diet_plan = ReccommendedDiet.objects.get(id=pk)
-    form = ReccommendedDietForm(instance=diet_plan)
-    if request.method == "POST":
-        form = ReccommendedDietForm(request.POST, instance=diet_plan)
-        if form.is_valid():
-            form.save()
-            return redirect("dietPlan")
-    context = {"form": form}
-    return render(request, "base/reccommended_diet_form.html", context)
-
-
-@login_required
-def delete_reccomended_diet(request, pk):
-    diet_plan = ReccommendedDiet.objects.get(id=pk)
-    if request.method == "POST":
-        diet_plan.delete()
-        return redirect("dietPlan")
-    return render(request, "base/delete.html", {"obj": diet_plan})
-
-
-# exercise
-
-
-@login_required
-def display_exercise(request, pk):
-    exercise_category = ExerciseCategory.objects.get(id=pk)
-    exercise_list = Exercise.objects.filter(exercise_category_id=pk)
-    context = {"exercise_category": exercise_category, "exercise_list": exercise_list}
-    return render(request, "base/exercise_category.html", context)
-
-
-@login_required
-def create_exercise(request):
-    form = ExerciseForm()
-    if request.method == "POST":
-        form = ExerciseForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("workout")
-    context = {"form": form}
-    return render(request, "base/exercise_form.html", context)
-
-
-@login_required
-def update_exercise(request, pk):
-    diet_plan = Exercise.objects.get(id=pk)
-    form = ExerciseForm(instance=diet_plan)
-    if request.method == "POST":
-        form = ExerciseForm(request.POST, instance=diet_plan)
-        if form.is_valid():
-            form.save()
-            return redirect("workout")
-    context = {"form": form}
-    return render(request, "base/exercise_form.html", context)
-
-
-@login_required
-def delete_exercise(request, pk):
-    diet_plan = Exercise.objects.get(id=pk)
-    if request.method == "POST":
-        diet_plan.delete()
-        return redirect("workout")
-    return render(request, "base/delete.html", {"obj": diet_plan})
 
 
 # workout plan
@@ -360,37 +378,86 @@ def display_exercise_category(request, pk):
 
 
 @login_required
-def create_exercise_category(request):
+def create_exercise_category(request, pk):
     form = ExerciseCategoryForm()
     if request.method == "POST":
         form = ExerciseCategoryForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect("workout")
+            workout_plan = WorkOutPlan.objects.get(id=pk)
+            data = form.save(commit=False)
+            data.work_out_plan_id = workout_plan
+            data.save()
+            return redirect("display_exercise_category", pk)
     context = {"form": form}
     return render(request, "base/exercise_category_form.html", context)
 
 
 @login_required
-def update_exercise_category(request, pk):
+def update_exercise_category(request, work_out_plan_id, pk):
     exercise_category = ExerciseCategory.objects.get(id=pk)
     form = ExerciseCategoryForm(instance=exercise_category)
     if request.method == "POST":
         form = ExerciseCategoryForm(request.POST, instance=exercise_category)
         if form.is_valid():
             form.save()
-            return redirect("workout")
+            return redirect("display_exercise_category", work_out_plan_id)
     context = {"form": form}
     return render(request, "base/exercise_category_form.html", context)
 
 
 @login_required
-def delete_exercise_category(request, pk):
+def delete_exercise_category(request, work_out_plan_id, pk):
     exercise_category = ExerciseCategory.objects.get(id=pk)
     if request.method == "POST":
         exercise_category.delete()
-        return redirect("workout")
+        return redirect("display_exercise_category", work_out_plan_id)
     return render(request, "base/delete.html", {"obj": exercise_category})
+
+
+# exercise
+@login_required
+def display_exercise(request, pk):
+    exercise_category = ExerciseCategory.objects.get(id=pk)
+    exercise_list = Exercise.objects.filter(exercise_category_id=pk)
+    context = {"exercise_category": exercise_category, "exercise_list": exercise_list}
+    return render(request, "base/exercise_category.html", context)
+
+
+@login_required
+def create_exercise(request, pk):
+    form = ExerciseForm()
+    if request.method == "POST":
+        form = ExerciseForm(request.POST)
+        if form.is_valid():
+            exercise_category = ExerciseCategory.objects.get(id=pk)
+            data = form.save(commit=False)
+            data.exercise_category_id = exercise_category
+            data.save()
+            return redirect("display_exercise", pk)
+    context = {"form": form}
+    return render(request, "base/exercise_form.html", context)
+
+
+@login_required
+def update_exercise(request, exercise_category_id, pk):
+    diet_plan = Exercise.objects.get(id=pk)
+    form = ExerciseForm(instance=diet_plan)
+    if request.method == "POST":
+        form = ExerciseForm(request.POST, instance=diet_plan)
+        if form.is_valid():
+            form.save()
+            return redirect("display_exercise", exercise_category_id)
+    context = {"form": form}
+    return render(request, "base/exercise_form.html", context)
+
+
+@login_required
+def delete_exercise(request, exercise_category_id, pk):
+    diet_plan = Exercise.objects.get(id=pk)
+    if request.method == "POST":
+        diet_plan.delete()
+        return redirect("display_exercise", exercise_category_id)
+    return render(request, "base/delete.html", {"obj": diet_plan})
 
 
 # billing
@@ -452,10 +519,14 @@ def delete_bill(request, pk):
 # attendance
 @login_required
 def display_attendance(request):
-    attendance_list = Attendance.objects.all()
-    current_time = datetime.now().date()
-    context = {"attendance_list": attendance_list, "current_time": current_time}
-    return render(request, "base/attendance.html", context)
+        if request.user.username == "admin":
+         attendance_list = Attendance.objects.all()
+
+        else:
+         attendance_list = Attendance.objects.all().filter(user_id=request.user.id)
+        current_time = datetime.now().date()
+        context = {"attendance_list": attendance_list, "current_time": current_time}
+        return render(request, "base/attendance.html", context)
 
 
 @login_required
@@ -528,6 +599,8 @@ def delete_equipment(request, pk):
     if request.method == "POST":
         equipment.delete()
         return redirect("equipment")
+
+
     return render(request, "base/delete.html", {"obj": equipment})
 
 
@@ -540,7 +613,10 @@ def loginPage(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            
             return redirect("dashboard")
+        else:
+            messages.error(request, 'Username or password is incorrect')    
 
     return render(request, "authentication/login.html")
 

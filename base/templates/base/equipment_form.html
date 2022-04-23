@@ -1,7 +1,7 @@
 {% extends 'base/home.html' %}
 {% block content %}
-    <style> 
-        input[type=submit]{
+<style>
+    input[type=submit] {
         background-color: #04AA6D;
         border: none;
         color: white;
@@ -10,20 +10,21 @@
         margin: 20px 0px;
         cursor: pointer;
         max-width: 300px;
-        
-        }
-        form{
-            margin: 10px;
-        }
-    </style>
-    <div>
-        <h3>Equipment Form</h3>
-        <form action="" method="post">
-            {% csrf_token %}
-            <div style="max-width: 300px;">
-                {{ form.as_p }}
-            </div>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
+
+    }
+
+    form {
+        margin: 10px;
+    }
+</style>
+<div>
+    <h3>Equipment Form</h3>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div style="max-width: 300px;">
+            {{ form.as_p }}
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+</div>
 {% endblock content %}

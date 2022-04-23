@@ -18,7 +18,7 @@
     <a href="">Register new user</a>
 </div>
 <div class="Register">
-    <h3>Add User Details</h3>
+    <h4>Add User Details</h4>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group uploader" onchange="imageUpload()">
@@ -39,28 +39,30 @@
             {{ form.profile_image }}
         </div>
         <div class="form-group">
+            <label for="">Package Id</label>
             {{ form.package_id  }}
         </div>
         <div class="form-group">
+            <label for="">User Id</label>
             {{ form.user_id  }}
         </div>
+
         <div class="form-group">
-            {{ form.full_name  }}
-        </div>
-        <div class="form-group">
+            <label for="">Address</label>
             {{ form.address  }}
         </div>
         <div class="form-group">
+            <label for="">Contact Number</label>
             {{ form.contact_number }}
         </div>
         <div class="form-group">
+            <label for="">Medical Condition</label>
             {{ form.medical_condition }}
         </div>
         <div class="form-group">
             {{ form.enroll_date }}
         </div>
         <div class="button">
-
             <input type="submit" value="Submit">
         </div>
     </form>

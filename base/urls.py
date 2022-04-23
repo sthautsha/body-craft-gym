@@ -4,11 +4,15 @@ from . import views
 urlpatterns = [
     path("", views.landingpage, name="landingpage"),
     path("dashboard", views.dashboard, name="dashboard"),
+    # Contact url
+    path("contact_us", views.contact_page, name="contact_us"),
+    # profile
+    path("profile", views.profile, name="profile"),
     # diet plan url
     path("dietPlan", views.dietplan, name="dietPlan"),
     path("dietPlan/create_diet_plan", views.create_diet_plan, name="create_diet_plan"),
     path(
-        "dietPlan/update_diet_plan/<str:pk>/",
+        "dietPlan/update_diet_plan/<str:pk>",
         views.update_diet_plan,
         name="update_diet_plan",
     ),
@@ -18,24 +22,40 @@ urlpatterns = [
         name="delete_diet_plan",
     ),
     # packages url
-    path("display_packages/<str:pk>/", views.display_packages, name="display_packages"),
-    path("create_package/", views.create_package, name="create_package"),
-    path("update_package/<str:pk>/", views.update_package, name="update_package"),
-    path("delete_package/<str:pk>/", views.delete_package, name="delete_package"),
+    path(
+        "membership/display_packages/<str:pk>/",
+        views.display_packages,
+        name="display_packages",
+    ),
+    path(
+        "membership/create_package/<str:pk>/",
+        views.create_package,
+        name="create_package",
+    ),
+    path(
+        "membership/update_package/<int:membership>/<str:pk>/",
+        views.update_package,
+        name="update_package",
+    ),
+    path(
+        "membership/delete_package/<int:membership>/<str:pk>/",
+        views.delete_package,
+        name="delete_package",
+    ),
     # membership plan
     path("membership/", views.memberShip, name="membership"),
     path(
-        "create_membership_plan/",
+        "membership/create_membership_plan/",
         views.create_membership_plan,
         name="create_membership_plan",
     ),
     path(
-        "update_membership_plan/<str:pk>/",
+        "membership/update_membership_plan/<str:pk>/",
         views.update_membership_plan,
         name="update_membership_plan",
     ),
     path(
-        "delete_membership_plan/<str:pk>/",
+        "membership/delete_membership_plan/<str:pk>/",
         views.delete_membership_plan,
         name="delete_membership_plan",
     ),
@@ -46,17 +66,17 @@ urlpatterns = [
         name="display_reccomended_diet",
     ),
     path(
-        "dietPlan/create_reccomended_diet/",
+        "dietPlan/create_reccomended_diet/<int:pk>/",
         views.create_reccomended_diet,
         name="create_reccomended_diet",
     ),
     path(
-        "dietPlan/update_reccomended_diet/<str:pk>/",
+        "dietPlan/update_reccomended_diet/<int:diet_plan_id>/<str:pk>/",
         views.update_reccomended_diet,
         name="update_reccomended_diet",
     ),
     path(
-        "dietPlan/delete_reccomended_diet/<str:pk>/",
+        "dietPlan/delete_reccomended_diet/<int:diet_plan_id>/<str:pk>/",
         views.delete_reccomended_diet,
         name="delete_reccomended_diet",
     ),
@@ -84,26 +104,34 @@ urlpatterns = [
         name="display_exercise_category",
     ),
     path(
-        "workout/create_exercise_category/",
+        "workout/create_exercise_category/<str:pk>",
         views.create_exercise_category,
         name="create_exercise_category",
     ),
     path(
-        "workout/update_exercise_category/<str:pk>/",
+        "workout/update_exercise_category/<int:work_out_plan_id>/<str:pk>/",
         views.update_exercise_category,
         name="update_exercise_category",
     ),
     path(
-        "workout/delete_exercise_category/<str:pk>/",
+        "workout/delete_exercise_category/<int:work_out_plan_id>/<str:pk>/",
         views.delete_exercise_category,
         name="delete_exercise_category",
     ),
     # exercise url
-    path("create_exercise/", views.create_exercise, name="create_exercise"),
-    path("update_exercise/<str:pk>/", views.update_exercise, name="update_exercise"),
-    path("delete_exercise/<str:pk>/", views.delete_exercise, name="delete_exercise"),
+    path("create_exercise/<str:pk>", views.create_exercise, name="create_exercise"),
     path(
-        "workout/display_exercise/<str:pk>/",
+        "update_exercise/<int:exercise_category_id>/<str:pk>/",
+        views.update_exercise,
+        name="update_exercise",
+    ),
+    path(
+        "delete_exercise/<int:exercise_category_id>/<str:pk>/",
+        views.delete_exercise,
+        name="delete_exercise",
+    ),
+    path(
+        "workout/display_exercise/<str:pk>",
         views.display_exercise,
         name="display_exercise",
     ),

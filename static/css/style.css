@@ -495,10 +495,26 @@ h6 {
 }
 
 footer {
-    background: var(--clr-secondary-black);
-    height: 20rem;
+    background: var(--clr-primary-black);
+    padding: 2rem;
+    color: white;
 }
 
+footer .container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 20px;
+}
+footer  h3{
+    color: var(--clr-primary-color);
+    margin-bottom: 20px;
+}
+footer  .contactus div{
+    margin-bottom: 10px;
+}
+footer  .contactus div:last-child{
+    margin: 0;
+}
 /* Login Pannel Start from here */
 
 .loginContainer {
@@ -1094,7 +1110,38 @@ login pannel */
 #id_profile_image {
     display: none;
 }
+.profile{
+    position: relative;
+}
+.profile:hover .profileDropdown{
+    visibility: visible;
+    opacity: 1;
+    transition: all ease-in-out 0.4s;
+}
 
+.profileDropdown{
+    background-color: var(--clr-primary-white);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 20px;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    width: 16rem;
+    right: 0;
+    box-shadow: 0px 18px 56px rgba(0, 0, 0, 0.11);
+}
+.profileDropdown a{
+    display: flex;
+    align-items:center ;
+    gap: 10px;
+}
+.profileDropdown div{
+    display: flex;
+    align-items:center ;
+    gap: 10px;
+}
 .modalBody:hover .modal {
     transform: translateX(0);
     cursor: pointer;
